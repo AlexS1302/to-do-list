@@ -1,5 +1,5 @@
 
-#grid-container {
+body {
     height: 100vh;
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -9,22 +9,65 @@
         "sidebar main";
 }
 
+/* Header */
 header {
-    grid-area: header;
     background-color: #f8f8f8;
+    grid-area: header;
+    grid-column: 2 / 3;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
 }
 
+/* Sidebar */
+
 #sidebar {
-    grid-area: sidebar;
     background-color: #f8f8f8;
+    grid-area: sidebar;
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
 }
+
+nav {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+li:first-child {
+    margin-top: 18px
+}
+
+li:last-child {
+    margin-bottom: 18px;
+}
+
+li {
+    margin: 30px 0;
+}
+
+li a {
+    text-decoration: none;
+}
+
+li a:visited {
+    color: black;
+}
+
+/* Main */
 
 #main {
     grid-area: main;
-    background-image: url(images/main-bg.jpg);
+    /* background-image: url(images/main-bg.jpg);
     background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
-    height: auto;
-    width: auto;
+    background-position: center;
+    background-repeat: no-repeat; */
 }
