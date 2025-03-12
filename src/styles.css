@@ -1,0 +1,30 @@
+
+#grid-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 0.5fr 4fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+}
+
+header {
+    grid-area: header;
+    background-color: #f8f8f8;
+}
+
+#sidebar {
+    grid-area: sidebar;
+    background-color: #f8f8f8;
+}
+
+#main {
+    grid-area: main;
+    background-image: url(images/main-bg.jpg);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: auto;
+    width: auto;
+}
