@@ -75,8 +75,37 @@ button {
     align-items: center;
 }
 
-/* Modal */
+/* Modals */
 
+#add-task-modal {
+    border: 1px solid black;
+    width: 600px;
+    height: 600px;
+    border-radius: 8px;
+}
+
+.modal-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-top h3 {
+    margin: auto;
+}
+
+.add-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+}
 
 
 /* Main */
