@@ -15,44 +15,72 @@
             <div class="to-do-list-menu">
                 <div class="section-header">
                     <h3>To Do List</h3>
-                    <button class="add-task"></button>
+                    <button id="add-task"></button>
                 </div>
                 <ul>
-                    <li>
-                        <a href="#">Today</a>
-                    </li>
-                    <li>
-                        <a href="#">This Week</a>
-                    </li>
-                    <li>
-                        <a href="#">This Month</a>
-                    </li>
-                    <li>
-                        <a href="#">Overdue</a>
-                    </li>
-                    <li>
-                        <a href="#">Completed</a>
-                    </li>
+                    <li><a href="#">Today</a></li>
+                    <li><a href="#">This Week</a></li>
+                    <li><a href="#">This Month</a></li>
+                    <li><a href="#">Overdue</a></li>
+                    <li><a href="#">Completed</a></li>
                 </ul>
             </div>
+
+            <!-- Add task modal -->
+             <dialog id="add-task-modal">
+                <div class="modal-container">
+                    <div class="modal-top">
+                        <h3>Add a new task!</h3>
+                        <img id="close-modal" src="icons/close.svg" alt="Close icon">
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
+                    <form class="add-task-form">
+                        <label for="task-title">Task Title</label>
+                        <input type="text" name="task-title" id="task-title" placeholder="Enter Task Title" required>
+
+                        <label for="task-desc">Task Description</label>
+                        <input type="text" name="task-desc" id="task-desc" placeholder="Enter Task Description">
+
+                        <label for="task-due-date">Task Due Date</label>
+                        <input type="date" name="task-due-date" id="task-due-date" required>
+
+                        <label for="task-priority">Task Priotity</label>
+                        <select name="task-priority" id="task-priority" required>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+
+                        <label for="task-project">Project List</label>
+                        <select name="task-project" id="task-project"></select>
+                    </form>
+                </div>
+             </dialog>
+
             
             <!-- Dynamically added projects go here! -->
              <div class="projects">
                 <div class="section-header">
                     <h3>Projects</h3>
-                    <button class="add-project"></button>
+                    <button id="add-project"></button>
                 </div>
                 <ul></ul> 
              </div>
+
+             <!-- Projects modal goes here! -->
 
             <!-- Dynamically added notes go here! -->
              <div class="notes">
                 <div class="section-header">
                     <h3>Notes</h3>
-                    <button class="add-notes"></button>
+                    <button id="add-notes"></button>
                 </div>
                 <ul></ul> 
              </div>
+
+             <!-- Notes modal goes here! -->
         </nav>
     </aside>
     
