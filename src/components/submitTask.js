@@ -11,8 +11,13 @@ export function submitTaskHandler() {
         console.log("Task created:", task);
 
         taskModal.close();
+        document.getElementById("add-task-form").reset();
     });
     
+}
+
+export function getTask() {
+    return task;
 }
 
 

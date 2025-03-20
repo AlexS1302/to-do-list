@@ -34,10 +34,10 @@
                         <h3>Add a new task!</h3>
                         <img id="close-modal" src="icons/close.svg" alt="Close icon">
                     </div>
-                    <div class="line">
-                        <hr>
-                    </div>
-                    <form class="add-task-form">
+                    
+                    <hr class="line">
+
+                    <form id="add-task-form">
                         <label for="task-title">Title</label>
                         <input type="text" name="task-title" id="task-title" placeholder="Enter Task Title" required>
 
@@ -64,7 +64,7 @@
 
             
             <!-- Dynamically added projects go here! -->
-             <div class="projects">
+             <div id="projects">
                 <div class="section-header">
                     <h3>Projects</h3>
                     <button id="add-project"></button>
@@ -75,7 +75,7 @@
              <!-- Projects modal goes here! -->
 
             <!-- Dynamically added notes go here! -->
-             <div class="notes">
+             <div id="notes">
                 <div class="section-header">
                     <h3>Notes</h3>
                     <button id="add-notes"></button>
@@ -87,6 +87,28 @@
         </nav>
     </aside>
     
-    <div id="main"></div> 
+    <div id="main">
+        <div id="card-template" style="display: none;">
+            <div id="card-header">
+                <h4 class="card-projects"></h4>
+                <h3 class="card-title"></h3>
+                <p class="card-desc"></p>
+            </div>
+            
+            <div id="card-body">
+                <h4 class="card-notes-heading"></h4>
+                <div class="card-notes"></div>
+                <div class="card-priority"></div>
+            </div>
+
+            <hr class="line">
+
+            <div id="card-footer">
+                <div class="card-duedate"></div>
+                <div class="card-buttons"></div>
+            </div>
+            
+        </div>
+    </div> 
 </body>
 </html>

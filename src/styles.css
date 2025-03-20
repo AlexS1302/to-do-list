@@ -95,7 +95,7 @@ li a:visited {
     margin: auto;
 }
 
-.add-task-form {
+#add-task-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -122,4 +122,10 @@ input, select {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#card-template {
+    background-color: #f8f8f8;
+    width: min-content;
+    height: min-content;
 }
