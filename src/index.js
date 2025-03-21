@@ -7,3 +7,4 @@ import { submitTaskHandler } from './components/submitTask';
 
 displayModal();
 submitTaskHandler();
+

@@ -1,4 +1,5 @@
 import { createTask } from "./taskCreator";
+import { cardConstruction } from "./taskCard";
 
 let task;
 
@@ -10,6 +11,8 @@ export function submitTaskHandler() {
         task = createTask();
         console.log("Task created:", task);
 
+        cardConstruction(task);
+
         taskModal.close();
         document.getElementById("add-task-form").reset();
     });
@@ -19,5 +22,3 @@ export function submitTaskHandler() {
 export function getTask() {
     return task;
 }
-
-
