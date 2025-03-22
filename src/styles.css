@@ -122,10 +122,13 @@ input, select {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 10px;
+    padding: 10px;
 }
-
-#card-template {
+#card {
     background-color: #f8f8f8;
-    width: min-content;
-    height: min-content;
+    
 }
