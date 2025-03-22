@@ -1,7 +1,24 @@
-import { createTask } from "./taskCreator";
+import { Task, createTask } from "./taskCreator";
 import { cardConstruction } from "./taskCard";
 
-let tasks = [];
+let tasks = [
+    new Task(
+        "Placeholder Task Title",
+        "This is a placeholder description",
+        new Date("2025-03-22"),
+        "Medium",
+        "Placeholder Project"
+    ),
+    // new Task(
+    //     "Placeholder Task",
+    //     "This is a placeholder",
+    //     new Date("2025-03-22"),
+    //     "Medium",
+    //     "Placeholder Project"
+    // )
+];
+
+tasks.forEach((task) => cardConstruction(task)); // render placeholders
 
 export function submitTaskHandler() {
     const taskModal = document.getElementById("add-task-modal");
