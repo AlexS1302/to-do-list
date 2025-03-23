@@ -38,7 +38,7 @@ nav {
     gap: 20px;
 }
 
-h3:first-of-type {
+nav h3:first-of-type {
     margin-top: 14px;
 }
 
@@ -123,15 +123,113 @@ input, select {
     background-position: center;
     background-repeat: no-repeat;
     display: grid;
-    grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
     padding: 10px;
 }
 #card {
     background-color: #f8f8f8;
     border-radius: 10px;
+    display: grid;
+}
+
+#card-header {
+    background-color: #cadcdc;
+    border-radius: 10px 10px 0 0;
+}
+
+#card-header > *, #card-body > * {
+    margin-left: 10px;
+}
+
+.card-project {
+    margin-bottom: 0;
+}
+
+.card-title, .card-desc {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#card-body {
     display: flex;
     flex-direction: column;
-    
+}
+
+.card-notes-header {
+    margin-top: 0;
+}
+
+.card-priority {
+    margin-top: auto;
+}
+
+#card-footer hr {
+    height: 1px;
+    background-color: #ccc;
+    width: 95%;
+}
+
+#card-footer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-duedate {
+    padding: 5px 0;
+    margin-bottom: 8px;
+    align-self: center;
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+
+.delete-btn, .complete-btn, .edit-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.delete-btn {
+    border-bottom-left-radius: 10px;
+    background-color: #cedede;
+}
+
+.complete-btn {
+    background-color: #d5e0cf;
+}
+
+.edit-btn {
+    border-bottom-right-radius: 10px;
+    background-color: #f5eccd;
+}
+
+.delete-btn::before, .edit-btn::before, .complete-btn::before {
+    display: block;
+    content: ""; 
+    margin-bottom: 2px;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.delete-btn::before {
+    background-image: url('icons/delete.svg');
+}
+
+.complete-btn::before {
+    background-image: url('icons/complete.svg');
+}
+
+.edit-btn::before {
+    background-image: url('icons/edit.svg');
 }
