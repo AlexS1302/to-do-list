@@ -1,4 +1,5 @@
 import { tasks, availableIds, updateTasks } from "./submitTask";
+import { displayModal } from "./displayModal";
 
 const taskContainer = document.getElementById("main");
 
@@ -12,7 +13,7 @@ export function handleButtonClicks() {
 
         if (event.target.classList.contains("delete-btn")) {
             handleDeleteTask(taskId);
-        } else if (event.target.classList.contains("delete-btn")) {
+        } else if (event.target.classList.contains("edit-btn")) {
             handleEditTask(taskId);
         }
     });
@@ -45,10 +46,58 @@ function handleDeleteTask(taskId) {
 
 // Edit Btn
 function handleEditTask(taskId) {
-    
+    const taskToEdit = tasks.find(task => task.id === taskId);
+    if (taskToEdit) {
+        console.log(`Editing Task with ID ${taskId}:`, taskToEdit);
+
+        const taskModal = document.getElementById("add-task-modal");
+        taskModal.showModal();
+
+        
+        // Populate modal fields with current form data
+        document.getElementById("task-title").value = taskToEdit.title;
+        document.getElementById("task-desc").value = taskToEdit.desc;
+        document.getElementById("task-priority").value = taskToEdit.priority;
+        document.getElementById("task-due-date").value = taskToEdit.dueDate.toISOString().split("T")[0];
+        document.getElementById("task-project").value = taskToEdit.project;
+
+        // Replace with button clone without any event listeners
+        const saveTaskBtn = document.getElementById("submit-task");
+        saveTaskBtn.replaceWith(saveTaskBtn.cloneNode(true));
+
+        document.getElementById("submit-task").addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Update task data
+            taskToEdit.title = document.getElementById("task-title").value;
+            taskToEdit.desc = document.getElementById("task-desc").value;
+            taskToEdit.priority = document.getElementById("task-priority").value;
+            taskToEdit.dueDate = new Date(document.getElementById("task-due-date").value);
+            taskToEdit.project = document.getElementById("task-project").value;
+
+            updateTaskUI(taskId, taskToEdit);
+
+            taskModal.close();
+            console.log(`Task with ID ${taskId} updated.`);
+
+        });
+
+    } else {
+        console.log("Task cannot be found!");
+    }
 }
 
-
+// Helper function
+function updateTaskUI(taskId, taskToEdit) {
+    const taskElement = document.getElementById(`task-${taskId}`);
+    if (taskElement) {
+        taskElement.querySelector(".card-title").textContent = taskToEdit.title;
+        taskElement.querySelector(".card-desc").textContent = taskToEdit.desc;
+        taskElement.querySelector(".card-priority").textContent = taskToEdit.priority;
+        taskElement.querySelector(".card-duedate").textContent = "Due Date: " + taskToEdit.dueDate.toLocaleDateString();
+        taskElement.querySelector(".card-project").textContent = taskToEdit.project;
+    }
+}
 
 
 // Others
