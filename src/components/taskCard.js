@@ -9,12 +9,13 @@ export function cardConstruction(task) {
     const taskContainer = document.getElementById("main");
 
     const card = document.createElement("div");
-    card.setAttribute("id", "card");
+    card.classList.add("card");
+    card.setAttribute("id", `task-${task.id}`);
     taskContainer.appendChild(card);
 
     // Card header
     const cardHeader = document.createElement("div");
-    cardHeader.setAttribute("id", "card-header");
+    cardHeader.classList.add("card-header");
     card.appendChild(cardHeader);
 
     // Card header children
@@ -31,7 +32,7 @@ export function cardConstruction(task) {
 
     // Card body
     const cardBody = document.createElement("div");
-    cardBody.setAttribute("id", "card-body");
+    cardBody.classList.add("card-body");
     card.appendChild(cardBody);
 
     //Card body children
@@ -47,7 +48,7 @@ export function cardConstruction(task) {
     
     // Card footer
     const cardFooter = document.createElement("div");
-    cardFooter.setAttribute("id", "card-footer");
+    cardFooter.classList.add("card-footer");
     card.appendChild(cardFooter)
 
     // Line
@@ -78,6 +79,7 @@ export function cardConstruction(task) {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
+    deleteBtn.setAttribute("data-task-id", task.id);
     deleteBtn.textContent = "Delete";
 
     const completeBtn = document.createElement("button");

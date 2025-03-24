@@ -34,7 +34,7 @@ export function submitTaskHandler() {
         if (taskForm.checkValidity()) {
             // Generate unique ids
             let newId;
-            if (availableIds.length < 0) {
+            if (availableIds.length > 0) {
                 newId = availableIds.shift();
             } else {
                 newId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
@@ -46,7 +46,7 @@ export function submitTaskHandler() {
             const task = createTask(); //no id
             task.id = newId;
             console.log("Task created:", task);
-            
+
             tasks.push(task);
             console.log("All tasks:", tasks);
 
@@ -63,3 +63,5 @@ export function submitTaskHandler() {
 export function getTask() {
     return tasks;
 }
+
+export {tasks, availableIds};

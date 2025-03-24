@@ -137,19 +137,19 @@ input, select {
     padding: 20px;
     border-top-left-radius: 5px;
 }
-#card {
+.card {
     background-color: #f8f8f8;
     border-radius: 10px;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
 
-#card-header {
+.card-header {
     background-color: #cadcdc;
     border-radius: 10px 10px 0 0;
 }
 
-#card-header > *, #card-body > * {
+.card-header > *, .card-body > * {
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -170,13 +170,13 @@ input, select {
 
 /* Card footer */
 
-#card-footer hr {
+.card-footer hr {
     height: 1px;
     background-color: #ccc;
     width: 95%;
 }
 
-#card-footer {
+.card-footer {
     display: flex;
     flex-direction: column;
     height: 100%;
