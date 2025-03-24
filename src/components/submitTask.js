@@ -22,7 +22,7 @@ let tasks = [
 
 let availableIds = [];
 
-tasks.forEach((task) => cardConstruction(task)); // render placeholders
+tasks.forEach((task) => cardConstruction(task)); // Render placeholders
 
 export function submitTaskHandler() {
     const taskModal = document.getElementById("add-task-modal");
@@ -60,6 +60,12 @@ export function submitTaskHandler() {
     });
 }
 
+// Function to update tasks id in footerBtns.js bcs imports are read-only
+export function updateTasks(newTasks) {
+    tasks = newTasks;
+}
+
+// Get tasks array
 export function getTask() {
     return tasks;
 }
