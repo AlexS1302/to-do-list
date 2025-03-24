@@ -76,10 +76,10 @@ export function cardConstruction(task) {
     //Buttons
     const btnContainer = document.createElement("div");
     btnContainer.classList.add("btn-container");
-
+    btnContainer.setAttribute("data-task-id", task.id);
+    
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
-    deleteBtn.setAttribute("data-task-id", task.id);
     deleteBtn.textContent = "Delete";
 
     const completeBtn = document.createElement("button");
