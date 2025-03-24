@@ -7,16 +7,20 @@ let tasks = [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         new Date("2025-03-22"),
         "Medium",
-        "Placeholder Project"
+        "Placeholder Project",
+        1
     ),
     new Task(
         "Placeholder Task",
         "This is a placeholder",
         new Date("2025-03-22"),
-        "Medium",
-        "Placeholder Project"
+        "Low",
+        "Placeholder Project",
+        2
     )
 ];
+
+let availableIds = [];
 
 tasks.forEach((task) => cardConstruction(task)); // render placeholders
 
@@ -28,16 +32,28 @@ export function submitTaskHandler() {
         event.preventDefault();
 
         if (taskForm.checkValidity()) {
-            const task = createTask();
-            console.log("Task created:", task);
+            // Generate unique ids
+            let newId;
+            if (availableIds.length < 0) {
+                newId = availableIds.shift();
+            } else {
+                newId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
+            }
 
+            console.log("Remaining Id's: ", availableIds);
+
+            // Generate user added tasks
+            const task = createTask(); //no id
+            task.id = newId;
+            console.log("Task created:", task);
+            
             tasks.push(task);
             console.log("All tasks:", tasks);
 
             cardConstruction(task);
 
             taskModal.close();
-            document.getElementById("add-task-form").reset();
+            taskForm.reset();
         } else {
             taskForm.reportValidity();
         }
