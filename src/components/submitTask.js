@@ -22,21 +22,26 @@ tasks.forEach((task) => cardConstruction(task)); // render placeholders
 
 export function submitTaskHandler() {
     const taskModal = document.getElementById("add-task-modal");
+    const taskForm = document.getElementById("add-task-form");
 
     document.getElementById("submit-task").addEventListener("click", (event) => {
         event.preventDefault();
-        const task = createTask();
-        console.log("Task created:", task);
 
-        tasks.push(task);
-        console.log("All tasks:", tasks);
+        if (taskForm.checkValidity()) {
+            const task = createTask();
+            console.log("Task created:", task);
 
-        cardConstruction(task);
+            tasks.push(task);
+            console.log("All tasks:", tasks);
 
-        taskModal.close();
-        document.getElementById("add-task-form").reset();
+            cardConstruction(task);
+
+            taskModal.close();
+            document.getElementById("add-task-form").reset();
+        } else {
+            taskForm.reportValidity();
+        }
     });
-    
 }
 
 export function getTask() {

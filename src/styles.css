@@ -75,13 +75,11 @@ li a:visited {
     color: black;
 }
 
-/* Nav Icons */
 ul li a {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
 
 /* Modals */
 
@@ -90,6 +88,7 @@ ul li a {
     width: 600px;
     height: min-content;
     border-radius: 8px;
+    border: none;
 }
 
 .modal-top {
@@ -119,6 +118,7 @@ input, select {
     border-radius: 5px;
     border: 1px solid black;
     padding: 5px;
+    outline: none;
 }
 
 
