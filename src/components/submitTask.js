@@ -4,18 +4,18 @@ import { cardConstruction } from "./taskCard";
 let tasks = [
     new Task(
         "Placeholder Task Title",
-        "This is a placeholder description",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         new Date("2025-03-22"),
         "Medium",
         "Placeholder Project"
     ),
-    // new Task(
-    //     "Placeholder Task",
-    //     "This is a placeholder",
-    //     new Date("2025-03-22"),
-    //     "Medium",
-    //     "Placeholder Project"
-    // )
+    new Task(
+        "Placeholder Task",
+        "This is a placeholder",
+        new Date("2025-03-22"),
+        "Medium",
+        "Placeholder Project"
+    )
 ];
 
 tasks.forEach((task) => cardConstruction(task)); // render placeholders

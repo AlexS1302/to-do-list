@@ -26,13 +26,8 @@ export function cardConstruction(task) {
     cardTitle.classList.add("card-title");
     cardTitle.textContent = task.title;
 
-    const cardDesc = document.createElement("p");
-    cardDesc.classList.add("card-desc");
-    cardDesc.textContent = task.desc;
-
     cardHeader.appendChild(cardProject);
     cardHeader.appendChild(cardTitle);
-    cardHeader.appendChild(cardDesc);
 
     // Card body
     const cardBody = document.createElement("div");
@@ -40,22 +35,16 @@ export function cardConstruction(task) {
     card.appendChild(cardBody);
 
     //Card body children
-    const cardNotesHeader = document.createElement("h4");
-    cardNotesHeader.classList.add("card-notes-header");
-    cardNotesHeader.textContent = "Notes:"
+    const cardDescHeader = document.createElement("h4");
+    cardDescHeader.classList.add("card-desc-header");
+    cardDescHeader.textContent = "Description: ";
+    cardBody.appendChild(cardDescHeader);
 
-    const cardNotes = document.createElement("p");
-    cardNotes.classList.add("card-notes");
-    cardNotes.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-
-    const cardPriority = document.createElement("div");
-    cardPriority.classList.add("card-priority");
-    cardPriority.textContent = task.priority;
-
-    cardBody.appendChild(cardNotesHeader);
-    cardBody.appendChild(cardNotes);
-    cardBody.appendChild(cardPriority);
-
+    const cardDesc = document.createElement("p");
+    cardDesc.classList.add("card-desc");
+    cardDesc.textContent = task.desc;
+    cardBody.appendChild(cardDesc);
+    
     // Card footer
     const cardFooter = document.createElement("div");
     cardFooter.setAttribute("id", "card-footer");
@@ -67,13 +56,22 @@ export function cardConstruction(task) {
     cardFooter.appendChild(line);
 
     //Card footer children
+    const dateAndPriority = document.createElement("div");
+    dateAndPriority.classList.add("date-and-priority");
+    cardFooter.appendChild(dateAndPriority);
+
     const cardDueDate = document.createElement("div");
     cardDueDate.classList.add("card-duedate");
     let dueDate = task.dueDate;
     cardDueDate.textContent = "Due Date: " + dueDate.toLocaleDateString();
     
-    cardFooter.appendChild(cardDueDate);
+    const cardPriority = document.createElement("div");
+    cardPriority.classList.add("card-priority");
+    cardPriority.textContent = task.priority;
     
+    dateAndPriority.appendChild(cardDueDate);
+    dateAndPriority.appendChild(cardPriority);
+
     //Buttons
     const btnContainer = document.createElement("div");
     btnContainer.classList.add("btn-container");
