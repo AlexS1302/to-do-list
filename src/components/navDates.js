@@ -1,5 +1,5 @@
 import { getTasks } from "./submitTask";
-import { isThisWeek, isToday } from "date-fns";
+import { isThisMonth, isThisWeek, isToday } from "date-fns";
 import { cardConstruction } from "./taskCard";
 
 const tasks = getTasks();
@@ -24,9 +24,11 @@ export function handleNavClicks() {
                 break;
             case "This Month":
                 console.log("This month's tasks selected");
+                showThisMonthTasks();
                 break;
             case "Overdue":
                 console.log("Overdue tasks selected");
+                showOverdueTasks();
                 break;
             case "Completed":
                 console.log("Completed tasks selected");
@@ -38,7 +40,6 @@ export function handleNavClicks() {
     });
 }
 
-
 function showAllTasks() {
     taskContainer.innerHTML = "";
 
@@ -47,10 +48,10 @@ function showAllTasks() {
     });
 }
 
-function showTodayTasks() {
+function showTasks(dateCheckFn) {
     taskContainer.innerHTML = "";
 
-    const filteredTasks = tasks.filter((task) => isToday(task.dueDate));
+    const filteredTasks = tasks.filter((task) => dateCheckFn(task.dueDate));
     console.log(filteredTasks);
     
     filteredTasks.forEach((filteredTask) => {
@@ -58,13 +59,25 @@ function showTodayTasks() {
     });
 }
 
-function showThisWeekTasks() {
-    taskContainer.innerHTML = "";
+function showTodayTasks() {
+    showTasks(isToday);
+}
 
-    const filteredTasks = tasks.filter((task) => isThisWeek(task.dueDate));
-    console.log(filteredTasks);
-    
-    filteredTasks.forEach((filteredTask) => {
-        cardConstruction(filteredTask);
-    });
+function showThisWeekTasks() {
+    showTasks(isThisWeek);
+}
+
+function showThisMonthTasks() {
+    showTasks(isThisMonth);
+}
+
+function isOverdue(dueDate) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to midnight so only date is being compared
+    const taskDate = new Date(dueDate); // The time is set to midnight (default)
+    return taskDate < today;
+}
+
+function showOverdueTasks() {
+    showTasks(isOverdue);
 }
