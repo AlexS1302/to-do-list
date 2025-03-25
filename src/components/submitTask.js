@@ -5,7 +5,7 @@ let tasks = [
     new Task(
         "Placeholder Task Title",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        new Date("2025-03-22"),
+        new Date("2025-03-25"),
         "Medium",
         "Placeholder Project",
         1
@@ -66,7 +66,7 @@ export function updateTasks(newTasks) {
 }
 
 // Get tasks array
-export function getTask() {
+export function getTasks() {
     return tasks;
 }
 

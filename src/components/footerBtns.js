@@ -44,6 +44,7 @@ function handleDeleteTask(taskId) {
 
 // Edit Btn
 function handleEditTask(taskId) {
+    const taskForm = document.getElementById("add-task-form");
     const taskToEdit = tasks.find(task => task.id === taskId);
     if (!taskToEdit) {
         console.error("Task cannot be found!");
@@ -78,6 +79,7 @@ function handleEditTask(taskId) {
         updateTaskUI(taskId, taskToEdit);
 
         taskModal.close();
+        taskForm.reset();
         console.log(`Task with ID ${taskId} updated successfully!`);
     });
 }

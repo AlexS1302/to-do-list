@@ -95,7 +95,7 @@ export function cardConstruction(task) {
     btnContainer.appendChild(editBtn);
     cardFooter.appendChild(btnContainer);
 
-    console.log("Card template updated successfully!");
+    console.log("Card created successfully!");
 }
 
 
