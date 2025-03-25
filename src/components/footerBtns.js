@@ -72,35 +72,11 @@ function handleEditTask(taskId) {
     taskModal.showModal();
     
     // Populate modal fields with current form data
-    document.getElementById("task-title").value = taskToEdit.title;
-    document.getElementById("task-desc").value = taskToEdit.desc;
-    document.getElementById("task-priority").value = taskToEdit.priority;
-    document.getElementById("task-due-date").value = taskToEdit.dueDate.toISOString().split("T")[0];
-    document.getElementById("task-project").value = taskToEdit.project;
-
-    // Replace with button clone without any event listeners
-    const saveTaskBtn = document.getElementById("submit-task");
-    saveTaskBtn.replaceWith(saveTaskBtn.cloneNode(true));
-
-    document.getElementById("submit-task").addEventListener("click", (event) => {
-        event.preventDefault();
-
-        // Update task data
-        taskToEdit.title = document.getElementById("task-title").value;
-        taskToEdit.desc = document.getElementById("task-desc").value;
-        taskToEdit.priority = document.getElementById("task-priority").value;
-        taskToEdit.dueDate = new Date(document.getElementById("task-due-date").value);
-        taskToEdit.project = document.getElementById("task-project").value;
-
-        updateTaskUI(taskId, taskToEdit);
-
-        taskModal.close();
-        taskForm.reset();
-        console.log(`Task with ID ${taskId} updated successfully!`);
-    });
+    populateTaskModal(taskToEdit);
+    attachSaveListener(taskId, taskToEdit, taskModal, taskForm);
 }
 
-// Helper function for Edit btn
+// Helper functions for Edit btn
 function updateTaskUI(taskId, taskToEdit) {
     const taskElement = document.getElementById(`task-${taskId}`);
     if (taskElement) {
@@ -110,4 +86,35 @@ function updateTaskUI(taskId, taskToEdit) {
         taskElement.querySelector(".card-duedate").textContent = "Due Date: " + taskToEdit.dueDate.toLocaleDateString();
         taskElement.querySelector(".card-project").textContent = taskToEdit.project;
     }
+}
+
+function populateTaskModal(task) {
+    document.getElementById("task-title").value = task.title;
+    document.getElementById("task-desc").value = task.desc;
+    document.getElementById("task-priority").value = task.priority;
+    document.getElementById("task-due-date").value = task.dueDate.toISOString().split("T")[0];
+    document.getElementById("task-project").value = task.project;
+}
+
+function attachSaveListener(taskId, task, modal, form) {
+    // Replace with button clone without any event listeners
+    const saveTaskBtn = document.getElementById("submit-task");
+    saveTaskBtn.replaceWith(saveTaskBtn.cloneNode(true));
+
+    document.getElementById("submit-task").addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Update task data
+        task.title = document.getElementById("task-title").value;
+        task.desc = document.getElementById("task-desc").value;
+        task.priority = document.getElementById("task-priority").value;
+        task.dueDate = new Date(document.getElementById("task-due-date").value);
+        task.project = document.getElementById("task-project").value;
+
+        updateTaskUI(taskId, task);
+
+        modal.close();
+        form.reset();
+        console.log(`Task with ID ${taskId} updated successfully!`);
+    });
 }
