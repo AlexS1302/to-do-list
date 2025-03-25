@@ -65,9 +65,9 @@ export function updateTasks(newTasks) {
     tasks = newTasks;
 }
 
-// Get tasks array
+// Live reference to tasks array
 export function getTasks() {
-    return tasks;
+    return tasks; 
 }
 
 export {tasks, availableIds};

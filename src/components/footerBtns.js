@@ -1,5 +1,6 @@
 import { tasks, availableIds, updateTasks } from "./submitTask";
 
+export const completedTasks = [];
 const taskContainer = document.getElementById("main");
 
 // Function for handling all footer btn clicks
@@ -14,19 +15,21 @@ export function handleButtonClicks() {
             handleDeleteTask(taskId);
         } else if (event.target.classList.contains("edit-btn")) {
             handleEditTask(taskId);
+        } else if (event.target.classList.contains("complete-btn")) {
+            handleCompletedTask(taskId);
         }
     });
 }
 
-// Delete Btn
-function handleDeleteTask(taskId) {
+function handleTaskUpdate(taskId, actionFn) {
     const updatedTasks = tasks.filter(task => {
-        // Compare card id with deleteBtn id
+        // Compare card id with btn id
         if (task.id === taskId) {
+            if (actionFn) actionFn(task); // Custom action
             availableIds.push(taskId);
             return false;
         }
-        return true; //keep
+        return true; //Keep
     });
 
     updateTasks(updatedTasks);
@@ -40,6 +43,19 @@ function handleDeleteTask(taskId) {
     console.log(`Task with ID ${taskId} deleted.`);
     console.log("Remaining tasks:", updatedTasks);
     console.log("Available IDs:", availableIds);
+}
+
+// Delete Btn
+function handleDeleteTask(taskId) {
+    handleTaskUpdate(taskId, null);
+}
+
+// Complete btn
+function handleCompletedTask(taskId) {
+    handleTaskUpdate(taskId, (task) => {
+        completedTasks.push(task);
+        console.log("Completed tasks:", completedTasks);
+    });
 }
 
 // Edit Btn
@@ -95,6 +111,3 @@ function updateTaskUI(taskId, taskToEdit) {
         taskElement.querySelector(".card-project").textContent = taskToEdit.project;
     }
 }
-
-// Complete btn
-const completeBtn = document.querySelector(".complete-btn");

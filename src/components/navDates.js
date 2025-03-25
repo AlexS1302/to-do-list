@@ -1,8 +1,8 @@
-import { getTasks } from "./submitTask";
 import { isThisMonth, isThisWeek, isToday } from "date-fns";
 import { cardConstruction } from "./taskCard";
+import { completedTasks } from "./footerBtns";
+import { tasks } from "./submitTask";
 
-const tasks = getTasks();
 const taskContainer = document.querySelector("#main");
 
 export function handleNavClicks() {
@@ -31,6 +31,7 @@ export function handleNavClicks() {
                 showOverdueTasks();
                 break;
             case "Completed":
+                showCompletedTasks();
                 console.log("Completed tasks selected");
                 break;
             default:
@@ -52,7 +53,7 @@ function showTasks(dateCheckFn) {
     taskContainer.innerHTML = "";
 
     const filteredTasks = tasks.filter((task) => dateCheckFn(task.dueDate));
-    console.log(filteredTasks);
+    console.log("Available tasks:", filteredTasks);
     
     filteredTasks.forEach((filteredTask) => {
         cardConstruction(filteredTask);
@@ -80,4 +81,11 @@ function isOverdue(dueDate) {
 
 function showOverdueTasks() {
     showTasks(isOverdue);
+}
+
+function showCompletedTasks() {
+    taskContainer.innerHTML = "";
+    completedTasks.forEach((task) => {
+        cardConstruction(task);
+    })
 }
