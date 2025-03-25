@@ -5,8 +5,10 @@ import "./styles.css";
 import { displayModal } from './components/displayModal';
 import { submitTaskHandler } from './components/submitTask';
 import { handleButtonClicks } from './components/footerBtns';
+import { handleNavClicks } from './components/navDates';
 
 displayModal();
 submitTaskHandler();
 handleButtonClicks();
+handleNavClicks();
 
