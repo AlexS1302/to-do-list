@@ -72,7 +72,11 @@ function handleCompletedTask(taskId) {
 // Edit Btn
 function handleEditTask(taskId) {
     const taskForm = document.getElementById("add-task-form");
-    const taskToEdit = tasks.find(task => task.id === taskId);
+    let taskToEdit = tasks.find(task => task.id === taskId);
+    if (!taskToEdit) {
+        taskToEdit = completedTasks.find(task => task.id === taskId);
+    }
+    
     if (!taskToEdit) {
         console.error("Task cannot be found!");
         return;
