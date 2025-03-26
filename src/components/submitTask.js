@@ -5,7 +5,7 @@ let tasks = [
     new Task(
         "Placeholder Task Title",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        new Date("2025-03-25"),
+        new Date("2025-03-26"),
         "Medium",
         "Placeholder Project",
         1

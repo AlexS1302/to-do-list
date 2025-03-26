@@ -47,15 +47,26 @@ function handleTaskUpdate(taskId, actionFn) {
 
 // Delete Btn
 function handleDeleteTask(taskId) {
+    // Remove from completedTasks if it exists there
+    const updatedCompletedTasks = completedTasks.filter(task => task.id !== taskId);
+    completedTasks.length = 0;
+    completedTasks.push(...updatedCompletedTasks);
+
+    console.log("Updated completed tasks after deletion:", completedTasks);
     handleTaskUpdate(taskId, null);
 }
 
 // Complete btn
 function handleCompletedTask(taskId) {
-    handleTaskUpdate(taskId, (task) => {
-        completedTasks.push(task);
-        console.log("Completed tasks:", completedTasks);
-    });
+    const isAlreadyCompleted = completedTasks.some(task => task.id === taskId);
+
+    if (!isAlreadyCompleted) {
+        handleTaskUpdate(taskId, (task) => {
+            completedTasks.push(task);
+            console.log("Completed tasks:", completedTasks);
+        });
+    }
+    
 }
 
 // Edit Btn
