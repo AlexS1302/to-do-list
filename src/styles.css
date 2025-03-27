@@ -62,7 +62,7 @@ header {
     cursor: pointer;
 }
 
-.section-header button:hover {
+.section-header button:hover, #submit-task:hover {
     background-color: rgb(202, 233, 233);
     box-shadow: 0px 2px 15px rgba(202, 233, 233, 0.5);
     transform: translateY(-2px);
@@ -130,29 +130,46 @@ ul li a {
 }
 
 .modal-top h3 {
-    margin: auto;
+    margin: 5px auto;
     font-size: 1.5rem;
 }
 
 #add-task-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+    font-family: Kalam;
+}
+
+#add-task-form label {
+    font-size: 1.1rem;
 }
 
 #submit-task {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid black;
+    border: none;
+    background-color: #d8f0f0;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
 input, select {
     border-radius: 5px;
-    border: 1px solid black;
+    border: 2px solid rgb(202, 233, 233);
     padding: 5px;
     outline: none;
+    margin-bottom: 20px;
 }
 
+#close-modal {
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#close-modal:hover {
+    transform: scale(1.1);
+}
 
 /* Main */
 
