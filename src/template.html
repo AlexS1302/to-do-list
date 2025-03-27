@@ -32,7 +32,7 @@
                 <div class="modal-container">
                     <div class="modal-top">
                         <h3>Add a new task!</h3>
-                        <img id="close-modal" src="icons/close.svg" alt="Close icon">
+                        <img class="close-modal" src="icons/close.svg" alt="Close icon">
                     </div>
                     
                     <hr class="line">
@@ -67,12 +67,30 @@
              <div id="projects">
                 <div class="section-header">
                     <h3>Projects</h3>
-                    <button id="add-project"></button>
+                    <button id="add-project-btn"></button>
                 </div>
                 <ul></ul> 
              </div>
 
              <!-- Projects modal goes here! -->
+             <dialog id="add-project-modal">
+                <div class="modal-container">
+                    <div class="modal-top">
+                        <h3>Add a new project!</h3>
+                        <img class="close-modal" src="icons/close.svg" alt="Close icon">
+                    </div>
+                    
+                    <hr class="line">
+
+                    <form id="add-project-form">
+                        <label for="project-title">Title</label>
+                        <input type="text" name="project-title" id="project-title" placeholder="Enter Project Title" required>
+
+                        <button id="submit-project" type="submit">Add Project</button>
+                    </form>
+                </div>
+             </dialog>
+
 
             <!-- Dynamically added notes go here! -->
              <div id="notes">

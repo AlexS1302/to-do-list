@@ -162,12 +162,12 @@ input, select {
     margin-bottom: 20px;
 }
 
-#close-modal {
+.close-modal {
     cursor: pointer;
     transition: 0.3s ease;
 }
 
-#close-modal:hover {
+.close-modal:hover {
     transform: scale(1.1);
 }
 
