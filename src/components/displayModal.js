@@ -6,7 +6,6 @@ export function displayTaskModal() {
     const taskForm = document.getElementById("add-task-form");
     const taskModal = document.getElementById("add-task-modal");
     const addTaskBtn = document.getElementById("add-task-btn");
-    const closeModalBtn = document.querySelector(".close-modal");
 
     addTaskBtn.addEventListener("click", () => {
         taskForm.reset();

@@ -6,10 +6,11 @@ import { displayTaskModal, displayProjectModal  } from './components/displayModa
 import { submitTaskHandler } from './components/submitTask';
 import { handleButtonClicks } from './components/footerBtns';
 import { handleNavClicks } from './components/navDates';
+import { submitProjectHandler } from './components/projects';
 
 displayTaskModal();
 displayProjectModal();
 submitTaskHandler();
 handleButtonClicks();
 handleNavClicks();
-
+submitProjectHandler();

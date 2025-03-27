@@ -141,7 +141,7 @@ ul li a {
     font-family: Kalam;
 }
 
-#add-task-form label {
+#add-task-form label, #add-project-form label {
     font-size: 1.1rem;
 }
 
