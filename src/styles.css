@@ -178,6 +178,7 @@ input, select {
     filter: saturate(1.3);
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
     transition: 0.5s ease;
+    font-family: Kalam;
 }
 
 .card-header {
@@ -190,18 +191,19 @@ input, select {
     margin-right: 10px;
 }
 
-.card-project, .card-desc-header {
+.card-project {
     margin-bottom: 10px;
     font-weight: 500;
-}
-
-.card-desc-header{
-    margin-top: 10px;
 }
 
 .card-title, .card-desc {
     margin-inline: 10px;
     margin-top: 5px;
+}
+.card-desc-header{
+    margin-block: 10px;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 /* Card footer */
@@ -223,6 +225,8 @@ input, select {
     margin-block: 10px;
     justify-content: space-around;
 }
+
+/* Buttons */
 
 .btn-container {
     display: grid;

@@ -36,7 +36,7 @@ export function cardConstruction(task) {
     card.appendChild(cardBody);
 
     //Card body children
-    const cardDescHeader = document.createElement("h4");
+    const cardDescHeader = document.createElement("h3");
     cardDescHeader.classList.add("card-desc-header");
     cardDescHeader.textContent = "Description: ";
     cardBody.appendChild(cardDescHeader);
