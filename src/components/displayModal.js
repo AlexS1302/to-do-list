@@ -1,3 +1,4 @@
+import { submitTaskHandler } from "./submitTask";
 
 const closeModalBtns = document.querySelectorAll(".close-modal");
 
@@ -8,6 +9,7 @@ export function displayTaskModal() {
     const addTaskBtn = document.getElementById("add-task-btn");
 
     addTaskBtn.addEventListener("click", () => {
+        submitTaskHandler(); // Remove event listeners when opening modal
         taskForm.reset();
         taskModal.showModal();
     });

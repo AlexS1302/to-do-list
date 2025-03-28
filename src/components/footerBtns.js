@@ -29,7 +29,7 @@ function handleTaskUpdate(taskId, actionFn) {
             availableIds.push(taskId);
             return false;
         }
-        return true; //Keep
+        return true; // Keep
     });
 
     updateTasks(updatedTasks);
@@ -112,7 +112,6 @@ function populateTaskModal(task) {
 }
 
 function attachSaveListener(taskId, task, modal, form) {
-    // Replace with button clone without any event listeners
     const saveTaskBtn = document.getElementById("submit-task");
     saveTaskBtn.replaceWith(saveTaskBtn.cloneNode(true));
 

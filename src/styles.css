@@ -36,20 +36,19 @@ header {
     width: 35px;
     cursor: pointer;
     transition: 2.5s ease;
-
+    animation-play-state: running;
 }
 
 .sun {
     animation: spin 10s linear infinite;
-    animation-play-state: running;
+}
+
+.cloud {
+    animation: up-down 3s ease-in-out infinite;
 }
 
 .sun:hover, .cloud:hover {
     animation-play-state: paused;
-}
-
-.cloud {
-    animation: up-down 3s ease-in-out infinite
 }
 
 @keyframes spin {
