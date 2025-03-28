@@ -1,9 +1,13 @@
 import deleteIconSrc from '../icons/delete.svg'
-import { getTasks } from './submitTask';
+import { tasks } from './submitTask';
 import { cardConstruction } from './taskCard';
 
-let tasks = getTasks(); //local copy
-let options = [];
+export const currentProjects = []; // For project delete btn
+export let matches = [];
+
+export function updateProjectCards(newCards) {
+    matches = newCards;
+}
 
 export function submitProjectHandler() {
     const submitProject = document.getElementById("submit-project");
@@ -43,11 +47,12 @@ export function submitProjectHandler() {
                 projectOption.textContent = title;
                 projectSelect.appendChild(projectOption);
                 
-                options.push(projectOption.value);
-                console.log("Current projects:", options);
+                currentProjects.push(projectOption.value);
+                console.log("Current projects:", currentProjects);
             });
 
             projectModal.close();
+            projectSelect.disabled = false;
 
         } else {
             projectForm.reportValidity();
@@ -61,14 +66,15 @@ export function getTasksByProject() {
     projectSection.addEventListener("click", (event) => {
         const projectItem = event.target.closest("a");
         if (projectItem) {
-            const matches = tasks.filter((task) => task.project === projectItem.textContent);
-            console.log("Project(s) found: ", matches);
+            matches = tasks.filter((task) => task.project === projectItem.textContent);
+            console.log(`Tasks with "${projectItem.textContent}" project found: `, matches);
 
             taskContainer.innerHTML = "";
             matches.forEach((match) => {
                 cardConstruction(match);
             });
-
+            
+            return matches;
         } else {
             console.log("No match found!");
         }

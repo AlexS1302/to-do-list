@@ -1,5 +1,6 @@
 import { tasks, availableIds, updateTasks } from "./submitTask";
 import { applyFallbackTitleIfEmpty } from "./taskCard";
+import { matches, updateProjectCards } from "./projects";
 
 export const completedTasks = [];
 const taskContainer = document.getElementById("main");
@@ -53,6 +54,9 @@ function handleDeleteTask(taskId) {
     completedTasks.length = 0;
     completedTasks.push(...updatedCompletedTasks);
 
+    const updatedMatches = matches.filter(match => match.id !== taskId);
+    updateProjectCards(updatedMatches);
+
     console.log("Updated completed tasks after deletion:", completedTasks);
     handleTaskUpdate(taskId, null);
 }
@@ -76,6 +80,7 @@ function handleEditTask(taskId) {
     let taskToEdit = tasks.find(task => task.id === taskId);
     if (!taskToEdit) {
         taskToEdit = completedTasks.find(task => task.id === taskId);
+        taskToEdit = matches.find(task => task.id === taskId);
     }
     
     if (!taskToEdit) {
