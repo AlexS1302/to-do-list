@@ -3,19 +3,19 @@ import { cardConstruction, applyFallbackTitleIfEmpty } from "./taskCard";
 
 let tasks = [
     new Task(
-        "Placeholder Task Title Placerr",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Lorem ipsum dolor sit ",
-        new Date("2025-03-26"),
+        "Plan Dinner",
+        "Decide between pasta or stir-fry. Check if there's enough basil for the pesto.",
+        new Date("2025-04-25"),
         "Medium",
-        "Placeholder Project Placeholder Pro",
+        "Meals",
         1
     ),
     new Task(
-        "Placeholder Task",
-        "This is a placeholder",
-        new Date("2025-03-22"),
+        "Evening Walk",
+        "Take a stroll in the park. Listen to that new audiobook.",
+        new Date("2025-03-30"),
         "Low",
-        "Placeholder Project",
+        "General",
         2
     )
 ];

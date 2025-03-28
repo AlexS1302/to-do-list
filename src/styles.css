@@ -370,7 +370,7 @@ input, select {
 
 .delete-project {
     position: absolute;
-    left: calc(100% + 5px);
+    left: calc(100% + 3px);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;

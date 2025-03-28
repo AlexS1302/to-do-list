@@ -5,6 +5,7 @@ export function submitProjectHandler() {
     const projectList = document.getElementById("project-list");
     const projectForm = document.getElementById("add-project-form")
     const projectModal = document.getElementById("add-project-modal");
+    const projectSelect = document.getElementById("task-project");
 
     submitProject.addEventListener("click", (event) => {
         event.preventDefault();
@@ -14,6 +15,7 @@ export function submitProjectHandler() {
             const projectTitles = projectTitle.trim().split(",");
 
             projectTitles.forEach((title) => {
+                // For sidebar
                 const listItem = document.createElement("li")
                 const projectItem = document.createElement("a");
 
@@ -29,6 +31,12 @@ export function submitProjectHandler() {
                 projectItem.appendChild(deleteIcon);
                 listItem.appendChild(projectItem);
                 projectList.appendChild(listItem);
+
+                // For options in add task modal
+                const projectOption = document.createElement("option");
+                projectOption.setAttribute("value", title);
+                projectOption.textContent = title;
+                projectSelect.appendChild(projectOption);
             });
 
             projectModal.close();
