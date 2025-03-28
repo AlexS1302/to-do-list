@@ -13,10 +13,13 @@ export function submitProjectHandler() {
             const projectTitles = projectTitle.trim().split(",");
 
             projectTitles.forEach((title) => {
-                const projectItem = document.createElement("li");
+                const listItem = document.createElement("li")
+                const projectItem = document.createElement("a");
                 projectItem.textContent = title;
                 projectItem.textContent = projectTitle;
-                projectList.appendChild(projectItem);
+                projectItem.setAttribute("href", "#");
+                listItem.appendChild(projectItem);
+                projectList.appendChild(listItem);
             });
 
             projectModal.close();

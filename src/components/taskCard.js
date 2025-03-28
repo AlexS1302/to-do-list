@@ -102,6 +102,7 @@ export function cardConstruction(task) {
     applyFallbackTitleIfEmpty();
 }
 
+
 function applyFallbackTitleIfEmpty(selector, fallbackText, fallbackClass = "") {
     const elements = document.querySelectorAll(selector);
     elements.forEach((e) => {

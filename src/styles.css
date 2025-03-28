@@ -254,11 +254,15 @@ input, select {
 .card-project {
     margin-bottom: 10px;
     font-weight: 500;
+    word-break: normal;
+    overflow-wrap: anywhere;
 }
 
 .card-title, .card-desc {
     margin-inline: 10px;
     margin-top: 5px;
+    word-break: normal;
+    overflow-wrap: anywhere;
 }
 .card-desc-header{
     margin-block: 10px;
@@ -345,4 +349,11 @@ input, select {
 
 .edit-btn::before {
     background-image: url('icons/edit.svg');
+}
+
+/* Projects */
+
+#project-list li a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
