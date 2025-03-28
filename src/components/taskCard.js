@@ -30,6 +30,7 @@ export function cardConstruction(task) {
     cardHeader.appendChild(cardProject);
     cardHeader.appendChild(cardTitle);
 
+    applyFallbackTitleIfEmpty('.card-project', 'No project provided');
     // Card body
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -45,6 +46,8 @@ export function cardConstruction(task) {
     cardDesc.classList.add("card-desc");
     cardDesc.textContent = task.desc;
     cardBody.appendChild(cardDesc);
+
+    applyFallbackTitleIfEmpty('.card-desc', 'No description provided.');
     
     // Card footer
     const cardFooter = document.createElement("div");
@@ -99,15 +102,16 @@ export function cardConstruction(task) {
     applyFallbackTitleIfEmpty();
 }
 
-export function applyFallbackTitleIfEmpty() {
-    const cardDescFallback = document.querySelectorAll(".card-desc");
-    cardDescFallback.forEach((desc) => {
-        if (!desc.textContent.trim()) {
-        desc.textContent = "No description provided.";
-        desc.classList.add("desc-fallback");
-        console.log("Fallback Description applied")
-    }
+function applyFallbackTitleIfEmpty(selector, fallbackText, fallbackClass = "") {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((e) => {
+        if (!e.textContent.trim()) {
+            e.textContent = fallbackText;
+            if (fallbackClass) {
+                e.classList.add(fallbackClass);   
+            }
+            console.log(`Fallback applied to element matching: ${selector}`);
+        }
     });
-    
 }
 
