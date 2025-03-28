@@ -101,6 +101,9 @@ function updateTaskUI(taskId, taskToEdit) {
         taskElement.querySelector(".card-priority").textContent = taskToEdit.priority;
         taskElement.querySelector(".card-duedate").textContent = "Due Date: " + taskToEdit.dueDate.toLocaleDateString();
         taskElement.querySelector(".card-project").textContent = taskToEdit.project;
+
+        applyFallbackTitleIfEmpty(`#task-${taskId} .card-desc`, "No description provided.");
+        applyFallbackTitleIfEmpty(`#task-${taskId} .card-project`, "No project provided.");
     }
 }
 
