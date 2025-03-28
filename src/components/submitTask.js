@@ -1,5 +1,5 @@
 import { Task, createTask } from "./taskCreator";
-import { cardConstruction } from "./taskCard";
+import { cardConstruction, applyFallbackTitleIfEmpty } from "./taskCard";
 
 let tasks = [
     new Task(

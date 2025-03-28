@@ -96,7 +96,18 @@ export function cardConstruction(task) {
     cardFooter.appendChild(btnContainer);
 
     console.log("Card created successfully!");
+    applyFallbackTitleIfEmpty();
 }
 
-
+export function applyFallbackTitleIfEmpty() {
+    const cardDescFallback = document.querySelectorAll(".card-desc");
+    cardDescFallback.forEach((desc) => {
+        if (!desc.textContent.trim()) {
+        desc.textContent = "No description provided.";
+        desc.classList.add("desc-fallback");
+        console.log("Fallback Description applied")
+    }
+    });
+    
+}
 
