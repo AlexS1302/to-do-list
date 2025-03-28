@@ -1,4 +1,9 @@
 import deleteIconSrc from '../icons/delete.svg'
+import { getTasks } from './submitTask';
+import { cardConstruction } from './taskCard';
+
+let tasks = getTasks(); //local copy
+let options = [];
 
 export function submitProjectHandler() {
     const submitProject = document.getElementById("submit-project");
@@ -37,6 +42,9 @@ export function submitProjectHandler() {
                 projectOption.setAttribute("value", title);
                 projectOption.textContent = title;
                 projectSelect.appendChild(projectOption);
+                
+                options.push(projectOption.value);
+                console.log("Current projects:", options);
             });
 
             projectModal.close();
@@ -44,7 +52,26 @@ export function submitProjectHandler() {
         } else {
             projectForm.reportValidity();
         }
-        
     });  
+}
+
+export function getTasksByProject() {
+    const taskContainer = document.querySelector("#main");
+    const projectSection = document.getElementById("projects");
+    projectSection.addEventListener("click", (event) => {
+        const projectItem = event.target.closest("a");
+        if (projectItem) {
+            const matches = tasks.filter((task) => task.project === projectItem.textContent);
+            console.log("Project(s) found: ", matches);
+
+            taskContainer.innerHTML = "";
+            matches.forEach((match) => {
+                cardConstruction(match);
+            });
+
+        } else {
+            console.log("No match found!");
+        }
+    });
 }
 
