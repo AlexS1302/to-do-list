@@ -29,6 +29,7 @@ export function submitTaskHandler() {
     const taskForm = document.getElementById("add-task-form");
 
     const newSaveTaskBtn = document.getElementById("submit-task");
+    newSaveTaskBtn.textContent = "Add Task";
     newSaveTaskBtn.replaceWith(newSaveTaskBtn.cloneNode(true));
 
     document.getElementById("submit-task").addEventListener("click", (event) => {

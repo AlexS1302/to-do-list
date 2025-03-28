@@ -1,4 +1,5 @@
 import { tasks, availableIds, updateTasks } from "./submitTask";
+import { applyFallbackTitleIfEmpty } from "./taskCard";
 
 export const completedTasks = [];
 const taskContainer = document.getElementById("main");
@@ -113,6 +114,7 @@ function populateTaskModal(task) {
 
 function attachSaveListener(taskId, task, modal, form) {
     const saveTaskBtn = document.getElementById("submit-task");
+    saveTaskBtn.textContent = "Edit Task";
     saveTaskBtn.replaceWith(saveTaskBtn.cloneNode(true));
 
     document.getElementById("submit-task").addEventListener("click", (event) => {

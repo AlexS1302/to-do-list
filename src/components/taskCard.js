@@ -99,11 +99,10 @@ export function cardConstruction(task) {
     cardFooter.appendChild(btnContainer);
 
     console.log("Card created successfully!");
-    applyFallbackTitleIfEmpty();
 }
 
 
-function applyFallbackTitleIfEmpty(selector, fallbackText, fallbackClass = "") {
+export function applyFallbackTitleIfEmpty(selector, fallbackText, fallbackClass = "") {
     const elements = document.querySelectorAll(selector);
     elements.forEach((e) => {
         if (!e.textContent.trim()) {

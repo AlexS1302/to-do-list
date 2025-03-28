@@ -1,3 +1,4 @@
+import deleteIconSrc from '../icons/delete.svg'
 
 export function submitProjectHandler() {
     const submitProject = document.getElementById("submit-project");
@@ -15,9 +16,17 @@ export function submitProjectHandler() {
             projectTitles.forEach((title) => {
                 const listItem = document.createElement("li")
                 const projectItem = document.createElement("a");
+
                 projectItem.textContent = title;
                 projectItem.textContent = projectTitle;
                 projectItem.setAttribute("href", "#");
+
+                const deleteIcon = document.createElement("img");
+                deleteIcon.classList.add("delete-project")
+                deleteIcon.src = deleteIconSrc;
+                deleteIcon.alt = "Delete Icon"
+
+                projectItem.appendChild(deleteIcon);
                 listItem.appendChild(projectItem);
                 projectList.appendChild(listItem);
             });
