@@ -7,7 +7,7 @@ import { submitTaskHandler } from './components/submitTask';
 import { handleButtonClicks } from './components/footerBtns';
 import { handleNavClicks } from './components/navDates';
 import { submitProjectHandler } from './components/projects';
-import { getTasksByProject } from './components/projects';
+import { getTasksByProject, deleteProject } from './components/projects';
 
 displayTaskModal();
 displayProjectModal();
@@ -16,3 +16,4 @@ handleButtonClicks();
 handleNavClicks();
 submitProjectHandler();
 getTasksByProject();
+deleteProject();

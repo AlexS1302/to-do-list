@@ -1,6 +1,7 @@
 import deleteIconSrc from '../icons/delete.svg'
 import { tasks } from './submitTask';
 import { cardConstruction } from './taskCard';
+import { showAllTasks } from './navDates';
 
 export const currentProjects = []; // For project delete btn
 export let matches = [];
@@ -29,7 +30,6 @@ export function submitProjectHandler() {
                 const projectItem = document.createElement("a");
 
                 projectItem.textContent = title;
-                projectItem.textContent = projectTitle;
                 projectItem.setAttribute("href", "#");
 
                 const deleteIcon = document.createElement("img");
@@ -80,4 +80,56 @@ export function getTasksByProject() {
         }
     });
 }
+
+export function deleteProject() {
+    const projectSection = document.getElementById("projects");
+    const projectSelect = document.getElementById("task-project");
+
+    if (!projectSection) return;
+
+    projectSection.addEventListener("click", (event) => {
+        const deleteIcon = event.target.closest(".delete-project");
+        if (!deleteIcon) return;
+
+        const projectItem = deleteIcon.closest("a");
+        if (!projectItem) return;
+
+        const listItem = projectItem.closest("li");
+        if (!listItem) return;
+
+        const projectTitle = projectItem.textContent.trim();
+        const index = currentProjects.indexOf(projectTitle);
+
+        if (index !== -1) {
+            currentProjects.splice(index, 1); // Remove from array
+            projectItem.remove(); // Remove from DOM
+            listItem.remove(); // Remove redundant li element 
+            
+
+            console.log(`Project "${projectTitle}" removed successfully!`);
+
+            Array.from(projectSelect.options).forEach((option) => {
+                if (option.value === projectItem.textContent.trim()) {
+                    option.remove();
+                }
+            });
+
+            tasks.forEach((task) => {
+                if (task.project === projectItem.textContent.trim()) {
+                    task.project = "No project provided";
+                }
+            });
+
+            if (currentProjects.length === 0) {
+                projectSelect.disabled = true;
+            }
+            
+            showAllTasks();
+
+        } else {
+            console.log("Project not found in array.");
+        }
+        
+    });
+}       
 

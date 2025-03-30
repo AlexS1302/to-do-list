@@ -41,7 +41,7 @@ export function handleNavClicks() {
     });
 }
 
-function showAllTasks() {
+export function showAllTasks() {
     taskContainer.innerHTML = "";
 
     tasks.forEach((task) => {

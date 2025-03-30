@@ -353,9 +353,9 @@ input, select {
 
 /* Projects */
 
-/* #project-list li {
-    position: relative;
-} */
+#project-list li {
+    padding-right: 3px;
+}
 
 #project-list li a {
     text-decoration: none;
@@ -376,8 +376,9 @@ input, select {
     transition: opacity 0.3s;
 }
 
-#project-list li a:hover .delete-project {
+#project-list li:hover .delete-project {
     opacity: 1;
+    pointer-events: auto;
     animation: flyShake 2s ease-in-out infinite;
 }
 
@@ -400,11 +401,5 @@ input, select {
     100% {
       transform: translateY(0) rotate(0deg);
     }
-}
-
-.delete-project.visible {
-    opacity: 1;
-    pointer-events: auto;
-    animation: none; 
 }
 
