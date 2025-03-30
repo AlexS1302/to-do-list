@@ -108,7 +108,7 @@ function updateTaskUI(taskId, taskToEdit) {
         taskElement.querySelector(".card-project").textContent = taskToEdit.project;
 
         applyFallbackTitleIfEmpty(`#task-${taskId} .card-desc`, "No description provided.");
-        applyFallbackTitleIfEmpty(`#task-${taskId} .card-project`, "No project provided.");
+        applyFallbackTitleIfEmpty(`#task-${taskId} .card-project`, "No project provided");
     }
 }
 

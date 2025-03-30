@@ -353,6 +353,10 @@ input, select {
 
 /* Projects */
 
+select:disabled {
+    cursor: not-allowed;
+}
+
 #project-list li {
     padding-right: 3px;
 }

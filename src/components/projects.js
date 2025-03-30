@@ -3,7 +3,7 @@ import { tasks } from './submitTask';
 import { cardConstruction } from './taskCard';
 import { showAllTasks } from './navDates';
 
-export const currentProjects = []; // For project delete btn
+export const currentProjects = ["Meals", "General"]; // For project delete btn
 export let matches = [];
 
 export function updateProjectCards(newCards) {
@@ -66,8 +66,8 @@ export function getTasksByProject() {
     projectSection.addEventListener("click", (event) => {
         const projectItem = event.target.closest("a");
         if (projectItem) {
-            matches = tasks.filter((task) => task.project === projectItem.textContent);
-            console.log(`Tasks with "${projectItem.textContent}" project found: `, matches);
+            matches = tasks.filter((task) => task.project === projectItem.textContent.trim());
+            console.log(`Tasks with "${projectItem.textContent.trim()}" project found: `, matches);
 
             taskContainer.innerHTML = "";
             matches.forEach((match) => {
