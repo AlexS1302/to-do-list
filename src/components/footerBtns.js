@@ -1,6 +1,7 @@
 import { tasks, availableIds, updateTasks } from "./submitTask";
 import { applyFallbackTitleIfEmpty } from "./taskCard";
 import { matches, updateProjectCards } from "./projects";
+import { removeItemFromLocalStorage } from "./localStorage.js";
 
 export const completedTasks = [];
 const taskContainer = document.getElementById("main");
@@ -23,11 +24,18 @@ export function handleButtonClicks() {
     });
 }
 
-function handleTaskUpdate(taskId, actionFn) {
+function handleTaskUpdate(taskId, actionFn, shouldRemoveFromLocalStorage = false) {
     const updatedTasks = tasks.filter(task => {
         // Compare card id with btn id
         if (task.id === taskId) {
             if (actionFn) actionFn(task); // Custom action
+
+            // Remove from localStorage
+            if (shouldRemoveFromLocalStorage) {
+                const key = `Task number: ${task.id}`;
+                removeItemFromLocalStorage(key);
+            }
+
             availableIds.push(taskId);
             return false;
         }
@@ -67,11 +75,16 @@ function handleCompletedTask(taskId) {
 
     if (!isAlreadyCompleted) {
         handleTaskUpdate(taskId, (task) => {
+            task.completed = true;
             completedTasks.push(task);
+
+            // Update task in localStorage
+            const key = `Task number: ${task.id}`; // Assuming this is the key format
+            localStorage.setItem(key, JSON.stringify(task));
+            
             console.log("Completed tasks:", completedTasks);
         });
     }
-    
 }
 
 // Edit Btn

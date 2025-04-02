@@ -2,6 +2,7 @@ import { Task, createTask } from "./taskCreator";
 import { cardConstruction } from "./taskCard";
 import { addItemToLocalStorage, getItemFromLocalStorage } from "./localStorage";
 import { parseJSON } from "date-fns";
+import { completedTasks } from "./footerBtns";
 
 let tasks = [
     new Task(
@@ -34,8 +35,23 @@ function renderLocalStorageItems() {
         if (item) {
             const task = JSON.parse(item);
             // Convert to date object because now it's just a string
-            task.dueDate = new Date(task.dueDate); 
-            retrievedTasks.push(task);
+            task.dueDate = parseJSON(task.dueDate); 
+
+            // Check if the task is marked as completed
+            if (task.completed === true) {
+                const isTaskCompleted = completedTasks.some(completedTask => completedTask.id === task.id);
+                
+                if (!isTaskCompleted) {
+                    completedTasks.push(task); // Add completed task
+                }
+
+            } else {
+                retrievedTasks.push(task);
+                console.log(retrievedTasks);
+                // Add retrieved tasks to main tasks array
+                tasks.push(task);
+            }
+
         }
     }
     
