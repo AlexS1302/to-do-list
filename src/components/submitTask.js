@@ -1,5 +1,7 @@
 import { Task, createTask } from "./taskCreator";
 import { cardConstruction } from "./taskCard";
+import { addItemToLocalStorage, getItemFromLocalStorage } from "./localStorage";
+import { parseJSON } from "date-fns";
 
 let tasks = [
     new Task(
@@ -22,7 +24,26 @@ let tasks = [
 
 let availableIds = [];
 
+function renderLocalStorageItems() {
+    let retrievedTasks = [];
+
+    for (let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i);
+        const item = getItemFromLocalStorage(key)
+
+        if (item) {
+            const task = JSON.parse(item);
+            // Convert to date object because now it's just a string
+            task.dueDate = new Date(task.dueDate); 
+            retrievedTasks.push(task);
+        }
+    }
+    
+    retrievedTasks.forEach((task) => cardConstruction(task))
+}
+
 tasks.forEach((task) => cardConstruction(task)); // Render placeholders
+renderLocalStorageItems();
 
 export function submitTaskHandler() {
     const taskModal = document.getElementById("add-task-modal");
@@ -55,6 +76,7 @@ export function submitTaskHandler() {
             console.log("All tasks:", tasks);
 
             cardConstruction(task);
+            addItemToLocalStorage(`Task number: ${task.id}`, JSON.stringify(task));
 
             taskModal.close();
             taskForm.reset();
