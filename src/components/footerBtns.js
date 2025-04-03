@@ -2,6 +2,7 @@ import { tasks, availableIds, updateTasks } from "./submitTask";
 import { applyFallbackTitleIfEmpty } from "./taskCard";
 import { matches, updateProjectCards } from "./projects";
 import { removeItemFromLocalStorage } from "./localStorage.js";
+import { Task } from "./taskCreator.js";
 
 export const completedTasks = [];
 const taskContainer = document.getElementById("main");
@@ -42,7 +43,7 @@ function handleTaskUpdate(taskId, actionFn) {
         taskElement.remove();
     }
 
-    console.log(`Task with ID ${taskId} removed.`);
+    console.log(`Task with ID ${taskId} removed/completed.`);
     console.log("Remaining tasks:", updatedTasks);
     console.log("Available IDs:", availableIds);
 }
@@ -89,16 +90,17 @@ function handleCompletedTask(taskId) {
 // Edit Btn
 function handleEditTask(taskId) {
     const taskForm = document.getElementById("add-task-form");
-    let taskToEdit = tasks.find(task => task.id === taskId);
-    if (!taskToEdit) {
-        taskToEdit = completedTasks.find(task => task.id === taskId);
-        taskToEdit = matches.find(task => task.id === taskId);
-    }
+    // Search for task across all arrays
+    let taskToEdit = tasks.find(task => task.id === taskId) || completedTasks.find(task => task.id === taskId) || matches.find(task => task.id === taskId);
     
     if (!taskToEdit) {
         console.error("Task cannot be found!");
         return;
     }
+
+    // Restore prototype for consistency
+    Object.setPrototypeOf(taskToEdit, Task.prototype);
+
     console.log(`Editing Task with ID ${taskId}:`, taskToEdit);
 
     const taskModal = document.getElementById("add-task-modal");
@@ -147,10 +149,15 @@ function attachSaveListener(taskId, task, modal, form) {
         task.dueDate = new Date(document.getElementById("task-due-date").value);
         task.project = document.getElementById("task-project").value;
 
+        // Save the updated task back to localStorage
+        const key = `Task number: ${taskId}`;
+        localStorage.setItem(key, JSON.stringify(task));
+
         updateTaskUI(taskId, task);
 
         modal.close();
         form.reset();
+
         console.log(`Task with ID ${taskId} updated successfully!`);
     });
 }
