@@ -24,19 +24,11 @@ export function handleButtonClicks() {
     });
 }
 
-function handleTaskUpdate(taskId, actionFn, shouldRemoveFromLocalStorage = false) {
+function handleTaskUpdate(taskId, actionFn) {
     const updatedTasks = tasks.filter(task => {
         // Compare card id with btn id
         if (task.id === taskId) {
             if (actionFn) actionFn(task); // Custom action
-
-            // Remove from localStorage
-            if (shouldRemoveFromLocalStorage) {
-                const key = `Task number: ${task.id}`;
-                removeItemFromLocalStorage(key);
-            }
-
-            availableIds.push(taskId);
             return false;
         }
         return true; // Keep
@@ -50,23 +42,31 @@ function handleTaskUpdate(taskId, actionFn, shouldRemoveFromLocalStorage = false
         taskElement.remove();
     }
 
-    console.log(`Task with ID ${taskId} deleted.`);
+    console.log(`Task with ID ${taskId} removed.`);
     console.log("Remaining tasks:", updatedTasks);
     console.log("Available IDs:", availableIds);
 }
 
 // Delete Btn
 function handleDeleteTask(taskId) {
-    // Remove from completedTasks if it exists there
+    // Remove from completedTasks array if it exists there
     const updatedCompletedTasks = completedTasks.filter(task => task.id !== taskId);
     completedTasks.length = 0;
     completedTasks.push(...updatedCompletedTasks);
+
+    // Remove task from localStorage
+    const key = `Task number: ${taskId}`;
+    if (localStorage.getItem(key)) {
+        removeItemFromLocalStorage(key);
+    }
 
     const updatedMatches = matches.filter(match => match.id !== taskId);
     updateProjectCards(updatedMatches);
 
     console.log("Updated completed tasks after deletion:", completedTasks);
-    handleTaskUpdate(taskId, null);
+    handleTaskUpdate(taskId, (task) => {
+        availableIds.push(task.id);
+    });
 }
 
 // Complete btn
@@ -77,9 +77,8 @@ function handleCompletedTask(taskId) {
         handleTaskUpdate(taskId, (task) => {
             task.completed = true;
             completedTasks.push(task);
-
-            // Update task in localStorage
-            const key = `Task number: ${task.id}`; // Assuming this is the key format
+            // Update completed parameter task in localStorage
+            const key = `Task number: ${task.id}`;
             localStorage.setItem(key, JSON.stringify(task));
             
             console.log("Completed tasks:", completedTasks);
