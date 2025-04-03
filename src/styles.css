@@ -115,10 +115,10 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    font-family: Kalam;
 }
 
 nav h3 {
-    font-family: Kalam;
     font-size: 1.3rem;
 }
 
@@ -375,6 +375,7 @@ select:disabled {
 .delete-project {
     position: absolute;
     left: calc(100% + 3px);
+    bottom: 1px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;
