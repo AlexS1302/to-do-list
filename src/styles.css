@@ -151,8 +151,9 @@ li a:visited {
 
 .to-do-list-menu ul li a {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 10px;
+    font-size: 1.05rem;
 }
 
 /* Modals */
@@ -363,6 +364,7 @@ select:disabled {
 
 #project-list li a {
     text-decoration: none;
+    font-size: 1.05rem;
     transition: text-decoration 0.3s; 
     position: relative;
 }
