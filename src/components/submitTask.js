@@ -3,26 +3,9 @@ import { cardConstruction } from "./taskCard";
 import { addItemToLocalStorage, getItemFromLocalStorage } from "./localStorage";
 import { parseJSON } from "date-fns";
 import { completedTasks } from "./footerBtns";
+import { renderProjectsFromLocalStorage } from "./projects";
 
-let tasks = [
-    new Task(
-        "Plan Dinner",
-        "Decide between pasta or stir-fry. Check if there's enough basil for the pesto.",
-        new Date("2025-04-25"),
-        "Medium",
-        "Meals",
-        1
-    ),
-    new Task(
-        "Evening Walk",
-        "Take a stroll in the park. Listen to that new audiobook.",
-        new Date("2025-03-30"),
-        "Low",
-        "General",
-        2
-    )
-];
-
+let tasks = [];
 let availableIds = [];
 
 function renderLocalStorageItems() {
@@ -30,10 +13,15 @@ function renderLocalStorageItems() {
 
     for (let i = 0; i < localStorage.length; i++){
         const key = localStorage.key(i);
+
+        if (key === "projects") continue;
+
         const item = getItemFromLocalStorage(key)
 
         if (item) {
             const task = JSON.parse(item);
+            Object.setPrototypeOf(task, Task.prototype);
+
             // Convert to date object because now it's just a string
             task.dueDate = parseJSON(task.dueDate); 
 
@@ -47,19 +35,19 @@ function renderLocalStorageItems() {
 
             } else {
                 retrievedTasks.push(task);
-                console.log(retrievedTasks);
                 // Add retrieved tasks to main tasks array
                 tasks.push(task);
             }
 
         }
     }
-    
+
+    console.log(retrievedTasks);
     retrievedTasks.forEach((task) => cardConstruction(task))
 }
 
-tasks.forEach((task) => cardConstruction(task)); // Render placeholders
 renderLocalStorageItems();
+renderProjectsFromLocalStorage();
 
 export function submitTaskHandler() {
     const taskModal = document.getElementById("add-task-modal");

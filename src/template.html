@@ -57,10 +57,7 @@
                         </select>
 
                         <label for="task-project">Project</label>
-                        <select name="task-project" id="task-project">
-                            <option value="Meals">Meals</option>
-                            <option value="General">General</option>
-                        </select>
+                        <select name="task-project" id="task-project" disabled></select>
 
                         <button id="submit-task" type="submit">Add Task</button>
                     </form>
@@ -74,20 +71,7 @@
                     <h3>Projects</h3>
                     <button id="add-project-btn"></button>
                 </div>
-                <ul id="project-list">
-                    <li>
-                        <a href="#">
-                            Meals
-                            <img class="delete-project" src="icons/delete.svg" alt="Delete Icon">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            General
-                            <img class="delete-project" src="icons/delete.svg" alt="Delete Icon">
-                        </a>
-                    </li>
-                </ul> 
+                <ul id="project-list"></ul> 
              </div>
 
              <!-- Projects modal goes here! -->
