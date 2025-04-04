@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <header>
+        <h2>What should we do today?</h2>
+        <img class="sun" src="2a1aac33f2a9dff7c8aa.svg" alt="Sun icon">
+        <img class="cloud" src="27b849b9c46909ab7a6f.svg" alt="Cloud icon">
+    </header>
+    
+    <aside id="sidebar">
+        <nav>
+            <div class="to-do-list-menu">
+                <div class="section-header">
+                    <h3>To Do List</h3>
+                    <button id="add-task-btn"></button>
+                </div>
+                <ul>
+                    <li><a href="#"><img src="ed2836f3cf6c8c68febc.svg" alt="All icon">All</a></li>
+                    <li><a href="#"><img src="5407a09e9656e2a805c9.svg" alt="Today icon">Today</a></li>
+                    <li><a href="#"><img src="01d21a491c1b41cd897d.svg" alt="This week icon">This Week</a></li>
+                    <li><a href="#"><img src="dddacac84b87eb39a6b0.svg" alt="This month icon">This Month</a></li>
+                    <li><a href="#"><img src="cc19cd78b5d634efe7a2.svg" alt="Overdue icon">Overdue</a></li>
+                    <li><a href="#"><img src="cea82596911be26e26d8.svg" alt="Completed Icon">Completed</a></li>
+                </ul>
+            </div>
+
+            <!-- Add task modal -->
+             <dialog id="add-task-modal">
+                <div class="modal-container">
+                    <div class="modal-top">
+                        <h3>Add a new task!</h3>
+                        <img class="close-modal" src="30508a6d00696f2dc5c6.svg" alt="Close icon">
+                    </div>
+                    
+                    <hr class="line">
+
+                    <form id="add-task-form">
+                        <label for="task-title">Title</label>
+                        <input type="text" name="task-title" id="task-title" placeholder="Enter Task Title" required maxlength="30">
+
+                        <label for="task-desc">Description</label>
+                        <input type="text" name="task-desc" id="task-desc" placeholder="Enter Task Description" maxlength="160">
+
+                        <label for="task-due-date">Due Date</label>
+                        <input type="date" name="task-due-date" id="task-due-date" required>
+
+                        <label for="task-priority">Priority</label>
+                        <select name="task-priority" id="task-priority" required>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+
+                        <label for="task-project">Project</label>
+                        <select name="task-project" id="task-project" disabled></select>
+
+                        <button id="submit-task" type="submit">Add Task</button>
+                    </form>
+                </div>
+             </dialog>
+
+            
+            <!-- Dynamically added projects go here! -->
+             <div id="projects">
+                <div class="section-header">
+                    <h3>Projects</h3>
+                    <button id="add-project-btn"></button>
+                </div>
+                <ul id="project-list"></ul> 
+             </div>
+
+             <!-- Projects modal goes here! -->
+             <dialog id="add-project-modal">
+                <div class="modal-container">
+                    <div class="modal-top">
+                        <h3>Add a new project!</h3>
+                        <img class="close-modal" src="30508a6d00696f2dc5c6.svg" alt="Close icon">
+                    </div>
+                    
+                    <hr class="line">
+
+                    <form id="add-project-form">
+                        <label for="project-title">Title</label>
+                        <input type="text" name="project-title" id="project-title" placeholder="Enter Project Title" required maxlength="20">
+
+                        <button id="submit-project" type="submit">Add Project</button>
+                    </form>
+                </div>
+             </dialog>
+        </nav>
+    </aside>
+    
+    <!-- Dynamically generated cards go here! -->
+    <div id="main"></div> 
+</body>
+</html>
