@@ -2,8 +2,9 @@ import deleteIconSrc from '../icons/delete.svg'
 import { tasks } from './submitTask';
 import { cardConstruction } from './taskCard';
 import { showAllTasks } from './navDates';
+import { getItemFromLocalStorage } from './localStorage';
 
-export let currentProjects = []; // For project delete btn
+export let currentProjects = [];
 export let matches = [];
 
 export function updateProjectCards(newCards) {
@@ -48,12 +49,10 @@ export function submitProjectHandler() {
                 projectSelect.appendChild(projectOption);
                 
                 currentProjects.push(projectOption.value);
-                console.log("Current projects:", currentProjects);
 
                 let savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
                 savedProjects.push(title);
                 localStorage.setItem("projects", JSON.stringify(savedProjects));
-                console.log("Updated projects in local storage:", savedProjects);
             });
 
             projectModal.close();
@@ -68,11 +67,17 @@ export function submitProjectHandler() {
 export function getTasksByProject() {
     const taskContainer = document.querySelector("#main");
     const projectSection = document.getElementById("projects");
+
     projectSection.addEventListener("click", (event) => {
+
+        if (currentProjects.length === 0) {
+            console.log("No projects available");
+            return;
+        }
+
         const projectItem = event.target.closest("a");
         if (projectItem) {
             matches = tasks.filter((task) => task.project === projectItem.textContent.trim());
-            console.log(`Tasks with "${projectItem.textContent.trim()}" project found: `, matches);
 
             taskContainer.innerHTML = "";
             matches.forEach((match) => {
@@ -113,14 +118,10 @@ export function deleteProject() {
             let savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
             savedProjects = savedProjects.filter((project) => project !== projectTitle);
             localStorage.setItem("projects", JSON.stringify(savedProjects));
-            console.log(`Project "${projectTitle}" removed successfully from local storage.`);
 
             projectItem.remove(); // Remove from DOM
             listItem.remove(); // Remove redundant li element 
-            
-            console.log(`Project "${projectTitle}" removed successfully!`);
 
-            // Remove from Add Task modal <select>
             Array.from(projectSelect.options).forEach((option) => {
                 if (option.value === projectItem.textContent.trim()) {
                     option.remove();
@@ -130,7 +131,7 @@ export function deleteProject() {
             // Update tasks with the changed project property in tasks array
             tasks.forEach((task) => {
                 if (task.project === projectItem.textContent.trim()) {
-                    task.project = "No project provided"; // Update in memory
+                    task.project = "No project provided";
                 }
             })
 
@@ -143,8 +144,8 @@ export function deleteProject() {
                     let task = JSON.parse(item);
                     if (task.project === projectTitle) {
                         task.project = "No project provided";
-                        localStorage.setItem(key, JSON.stringify(task)); // Update the task in local storage
-                        console.log(`Task "${task.id}" updated with new project property.`);
+                        localStorage.setItem(key, JSON.stringify(task));
+                        console.log(`Task "${task.id}" updated with fallback project property.`);
                     }
                 }
             }
@@ -163,21 +164,18 @@ export function deleteProject() {
 }       
 
 export function renderProjectsFromLocalStorage() {
-    const projectList = document.getElementById("project-list"); // Sidebar list
-    const projectSelect = document.getElementById("task-project"); // Dropdown menu
+    const projectList = document.getElementById("project-list");
+    const projectSelect = document.getElementById("task-project");
 
     // Clear any existing projects to avoid duplicates during re-render
     projectList.innerHTML = "";
     projectSelect.innerHTML = "";
 
-    // Retrieve projects from local storage
-    const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+    const savedProjects = JSON.parse(getItemFromLocalStorage("projects")) || [];
 
     currentProjects = [...savedProjects];
 
-    // Iterate through saved projects and render them
     savedProjects.forEach((title) => {
-        // Create DOM element for the sidebar
         const listItem = document.createElement("li");
         const projectItem = document.createElement("a");
         projectItem.textContent = title;
@@ -185,22 +183,19 @@ export function renderProjectsFromLocalStorage() {
 
         const deleteIcon = document.createElement("img");
         deleteIcon.classList.add("delete-project");
-        deleteIcon.src = deleteIconSrc; // Make sure `deleteIconSrc` is defined
+        deleteIcon.src = deleteIconSrc;
         deleteIcon.alt = "Delete Icon";
 
         projectItem.appendChild(deleteIcon);
         listItem.appendChild(projectItem);
         projectList.appendChild(listItem);
 
-        // Create DOM element for the dropdown menu
         const projectOption = document.createElement("option");
         projectOption.setAttribute("value", title);
         projectOption.textContent = title;
         projectSelect.appendChild(projectOption);
     });
 
-    // Enable the dropdown menu if there are projects
     projectSelect.disabled = savedProjects.length === 0;
 
-    console.log("Projects rendered successfully:", savedProjects);
 }

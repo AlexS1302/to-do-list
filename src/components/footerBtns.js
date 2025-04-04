@@ -43,9 +43,6 @@ function handleTaskUpdate(taskId, actionFn) {
         taskElement.remove();
     }
 
-    console.log(`Task with ID ${taskId} removed/completed.`);
-    console.log("Remaining tasks:", updatedTasks);
-    console.log("Available IDs:", availableIds);
 }
 
 // Delete Btn
@@ -64,7 +61,6 @@ function handleDeleteTask(taskId) {
     const updatedMatches = matches.filter(match => match.id !== taskId);
     updateProjectCards(updatedMatches);
 
-    console.log("Updated completed tasks after deletion:", completedTasks);
     handleTaskUpdate(taskId, (task) => {
         availableIds.push(task.id);
     });
@@ -82,7 +78,6 @@ function handleCompletedTask(taskId) {
             const key = `Task number: ${task.id}`;
             localStorage.setItem(key, JSON.stringify(task));
             
-            console.log("Completed tasks:", completedTasks);
         });
     }
 }

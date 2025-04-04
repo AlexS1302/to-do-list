@@ -41,8 +41,6 @@ function renderLocalStorageItems() {
 
         }
     }
-
-    console.log(retrievedTasks);
     retrievedTasks.forEach((task) => cardConstruction(task))
 }
 
@@ -65,11 +63,12 @@ export function submitTaskHandler() {
             let newId;
             if (availableIds.length > 0) {
                 newId = availableIds.shift();
+                console.log("Leftover ID taken:", newId);
+                console.log("Leftover IDs: ", availableIds);
             } else {
                 newId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
+                console.log("New ID generated:", newId);
             }
-
-            console.log("Remaining Id's: ", availableIds);
 
             // Generate user added tasks
             const task = createTask(); //no id
@@ -77,7 +76,6 @@ export function submitTaskHandler() {
             console.log("Task created:", task);
 
             tasks.push(task);
-            console.log("All tasks:", tasks);
 
             cardConstruction(task);
             addItemToLocalStorage(`Task number: ${task.id}`, JSON.stringify(task));

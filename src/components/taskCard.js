@@ -98,7 +98,6 @@ export function cardConstruction(task) {
     btnContainer.appendChild(editBtn);
     cardFooter.appendChild(btnContainer);
 
-    console.log("Card created successfully!");
 }
 
 
@@ -110,7 +109,6 @@ export function applyFallbackTitleIfEmpty(selector, fallbackText, fallbackClass 
             if (fallbackClass) {
                 e.classList.add(fallbackClass);   
             }
-            console.log(`Fallback applied to element matching: ${selector}`);
         }
     });
 }

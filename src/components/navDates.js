@@ -34,9 +34,6 @@ export function handleNavClicks() {
                 showCompletedTasks();
                 console.log("Completed tasks selected");
                 break;
-            default:
-                console.log("Unknown action");
-                break;
         }
     });
 }
@@ -53,7 +50,6 @@ function showTasks(dateCheckFn) {
     taskContainer.innerHTML = "";
 
     const filteredTasks = tasks.filter((task) => dateCheckFn(task.dueDate));
-    console.log("Available tasks:", filteredTasks);
     
     filteredTasks.forEach((filteredTask) => {
         cardConstruction(filteredTask);

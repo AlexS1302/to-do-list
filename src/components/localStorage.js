@@ -25,7 +25,6 @@ function storageAvailable(type) {
 function addItemToLocalStorage(key, value) {
     if (storageAvailable("localStorage")) {
         localStorage.setItem(key, value);
-        console.log("Item successfully set in localStorage!");
     } else {
         console.error("Local storage is not available.");
     }
@@ -34,7 +33,6 @@ function addItemToLocalStorage(key, value) {
 function removeItemFromLocalStorage(key) {
     if (storageAvailable("localStorage")) {
         localStorage.removeItem(key)
-        console.log("Item successfully removed from localStorage!");
     } else {
         console.error("Local storage is not available.");
     }
@@ -43,7 +41,6 @@ function removeItemFromLocalStorage(key) {
 function getItemFromLocalStorage(key) {
     if (storageAvailable("localStorage")) {
         const value = localStorage.getItem(key)
-        console.log("Item successfully retrieved from localStorage!")
         return value;
     } else {
         console.error("Local storage is not available.");
