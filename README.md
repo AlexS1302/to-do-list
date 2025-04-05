@@ -21,4 +21,4 @@ This is a simple To-Do List app that I built to practice working with modules in
 You can view this project [here](https://alexs1302.github.io/to-do-list/)!
 
 ## Credits
-This Project was created as part of The Odin Project's curriculum, a free online resource for learning web development.
+This project was created as part of The Odin Project's curriculum, a free online resource for learning web development.
