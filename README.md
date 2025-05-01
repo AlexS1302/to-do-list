@@ -16,6 +16,7 @@ This is a simple To-Do List app that I built to practice working with modules in
 * CSS3 (including Flexbox & Grid)
 * JavaScript
 * Webpack
+* date-fns (for parsing JSON and checking dates)
 
 ## Project Link
 You can view this project [here](https://alexs1302.github.io/to-do-list/)!
