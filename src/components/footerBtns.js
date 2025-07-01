@@ -133,6 +133,10 @@ function attachSaveListener(taskId, task, modal, form) {
     const saveTaskBtn = document.getElementById("submit-task");
     saveTaskBtn.textContent = "Edit Task";
     saveTaskBtn.replaceWith(saveTaskBtn.cloneNode(true));
+    
+    const saveTaskHeader = document.getElementById("modal-header")
+    saveTaskHeader.textContent = "Edit Task!";
+    saveTaskHeader.replaceWith(saveTaskHeader.cloneNode(true));
 
     document.getElementById("submit-task").addEventListener("click", (event) => {
         event.preventDefault();
