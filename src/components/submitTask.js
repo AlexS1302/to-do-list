@@ -55,10 +55,6 @@ export function submitTaskHandler() {
     newSaveTaskBtn.textContent = "Add Task";
     newSaveTaskBtn.replaceWith(newSaveTaskBtn.cloneNode(true));
 
-    const newSaveTaskHeader = document.getElementById("modal-header")
-    newSaveTaskHeader.textContent = "Add a new task!";
-    newSaveTaskHeader.replaceWith(newSaveTaskHeader.cloneNode(true));
-
     document.getElementById("submit-task").addEventListener("click", (event) => {
         event.preventDefault();
 
