@@ -137,6 +137,11 @@ function attachSaveListener(taskId, task, modal, form) {
     document.getElementById("submit-task").addEventListener("click", (event) => {
         event.preventDefault();
 
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
         // Update task data
         task.title = document.getElementById("task-title").value;
         task.desc = document.getElementById("task-desc").value;
