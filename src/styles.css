@@ -121,6 +121,7 @@ nav {
     gap: 20px;
     font-family: Kalam;
     height: 100%; 
+    width: 80%;
 }
 
 nav h3 {
@@ -360,11 +361,6 @@ input, select {
 }
 
 /* Projects */
-
-select:disabled {
-    cursor: not-allowed;
-}
-
 #project-list li {
     padding-right: 3px;
 }
@@ -396,8 +392,12 @@ select:disabled {
     animation: flyShake 2s ease-in-out infinite;
 }
 
-#project-title:disabled, #submit-project:disabled {
+select:disabled, #project-title:disabled, #submit-project:disabled {
     cursor: not-allowed;
+}
+
+label[for="project-title"], label[for="task-title"] {
+    padding-top: 0.5rem;
 }
 
 @keyframes flyShake {
