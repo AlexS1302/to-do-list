@@ -14,7 +14,7 @@ body {
     height: 100vh;
     display: grid;
     overflow: hidden;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 220px 1fr;
     grid-template-rows: 0.5fr 4fr;
     grid-template-areas:
         "sidebar header"
@@ -365,13 +365,6 @@ select:disabled {
     cursor: not-allowed;
 }
 
-#projects {
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: 100%;
-    padding-right: 1rem;
-}
-
 #project-list li {
     padding-right: 3px;
 }
@@ -401,6 +394,10 @@ select:disabled {
     opacity: 1;
     pointer-events: auto;
     animation: flyShake 2s ease-in-out infinite;
+}
+
+#project-title:disabled, #submit-project:disabled {
+    cursor: not-allowed;
 }
 
 @keyframes flyShake {

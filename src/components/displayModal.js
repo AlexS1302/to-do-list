@@ -30,7 +30,22 @@ export function displayProjectModal() {
 
     addProjectBtn.addEventListener("click", () => {
         projectForm.reset();
+
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const projectInput = document.getElementById("project-title");
+        const submitButton = document.getElementById("submit-project")
+
         projectModal.showModal();
+
+        if (savedProjects.length >= 11) {
+            projectInput.disabled = true;
+            projectInput.placeholder = "Project Limit Reached";
+            submitButton.disabled = true;
+        } else {
+            projectInput.disabled = false;
+            projectInput.placeholder = "Enter Project Title";
+            submitButton.disabled = false;
+        }
     });
 
     closeModalBtns.forEach((btn) => {
